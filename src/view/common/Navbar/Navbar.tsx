@@ -13,26 +13,28 @@ export class Navbar extends Component {
                 </div>
 
                 <ul className="list-none mt-2 flex">
-                    <li className="mr-2 text-[18px] text-[#e6f0e6]">
+                    <li className="mr-2 text-[18px] text-[#e6f0e6] hover:text-green-500">
                         <Link to="/">Home</Link>
                     </li>
-                    <li className="mr-2 text-[18px] text-[#e6f0e6]">
+                    <li className="mr-2 text-[18px] text-[#e6f0e6] hover:text-green-500">
                         <Link to="/about">About</Link>
                     </li>
-                    <li className="mr-2 text-[18px] text-[#e6f0e6]">
+                    <li className="mr-2 text-[18px] text-[#e6f0e6] hover:text-green-500">
+                        <Link to="/item">Items</Link>
+                    </li>
+                    <li className="mr-2 text-[18px] text-[#e6f0e6] hover:text-green-500">
                         <Link to="/contact">Contact</Link>
                     </li>
+
                 </ul>
 
                 <button className="text-[20px] text-[#e6f0e6] bg-green-400 pl-3 pr-3 mr-5
-                                   hover:text-gray-600" onClick={this.onClickButton}>Sing In</button>
+                                   hover:text-gray-600 rounded-2xl"><Link to="/login">Sing In</Link></button>
 
 
             </div>
         );
     }
 
-    onClickButton = () =>{
-        alert("Button Clicked")
-    }
+
 }

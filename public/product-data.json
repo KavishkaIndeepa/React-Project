@@ -1,0 +1,39 @@
+[
+  {
+    "id": 1,
+    "name": "Nike",
+    "price": "5000",
+    "currency": "LKR",
+    "image": "nike.png"
+  },
+  {
+    "id": 2,
+    "name": "Men-Shoes",
+    "price": "4000",
+    "currency": "LKR",
+    "image": "men-shoes.png"
+  },
+  {
+    "id": 3,
+    "name": "Shoes",
+    "price": "5000",
+    "currency": "LKR",
+    "image": "Shoes.png"
+  },
+  {
+    "id": 4,
+    "name": "Sneakers",
+    "price": "3000",
+    "currency": "LKR",
+    "image": "sneakers.png"
+  },
+  {
+    "id": 4,
+    "name": "Women-Shoes",
+    "price": "2000",
+    "currency": "LKR",
+    "image": "Womens-Shoes.jpeg"
+  }
+
+
+]
