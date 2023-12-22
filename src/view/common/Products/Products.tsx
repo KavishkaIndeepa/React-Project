@@ -13,7 +13,7 @@ export class Products extends Component<ProductsProps> {
         return (
             <div className={"w-52 h-64  mr-2 mb-2 justify-center items-center border-gray-800 border-[1px] hover:bg-emerald-500"}>
                 <div>
-                    <img src={image} alt=""/>
+                    <img className={"h-56"} src={image} alt=""/>
                 </div>
                 <div className={"flex"}>
 
