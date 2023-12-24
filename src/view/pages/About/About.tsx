@@ -1,11 +1,11 @@
 import {Component} from "react";
-import main from "../../../assets/Shoes.jpg";
+import main from "../../../assets/_Shoes Sale  .png";
 
 export class About extends Component {
     render() {
         return (
             <div className={"mb-9"}>
-                <p className={"mt-12 ml-5 text-4xl"}>Welcome to Brocelle Shoes – Where Style Meets Comfort!</p>
+                <p className={"mt-12 ml-5 text-4xl font-bold"}>Welcome to Brocelle Shoes – Where Style Meets Comfort!</p>
                 <div className={"flex"}>
 
                     <div className={"mt-20 ml-5 mb-5"}>
@@ -33,7 +33,7 @@ export class About extends Component {
                     </div>
 
                     <div className={"mx-auto"}>
-                        <img className={"max-w-md max-h-max ml-5 mb-10"} src={main} alt=""/>
+                        <img className={"ml-5 mb-10"} src={main} alt=""/>
                     </div>
 
                 </div>

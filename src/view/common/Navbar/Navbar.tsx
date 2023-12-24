@@ -22,6 +22,9 @@ export class Navbar extends Component {
                     <li className="mr-2 text-[18px] text-[#e6f0e6] hover:text-green-500">
                         <Link to="/item">Items</Link>
                     </li>
+                    <li className="mr-2 text-[18px] text-[#e6f0e6] hover:text-green-600">
+                        <Link to="/shopping-cart">My-Cart</Link>
+                    </li>
                     <li className="mr-2 text-[18px] text-[#e6f0e6] hover:text-green-500">
                         <Link to="/contact">Contact</Link>
                     </li>
