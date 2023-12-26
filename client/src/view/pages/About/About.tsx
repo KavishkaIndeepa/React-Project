@@ -1,6 +1,6 @@
 import {Component} from "react";
 // @ts-ignore
-import main from "../../../assets/_Shoes Sale  .png";
+import main from "../../../assets/Shop.jpeg";
 
 export class About extends Component {
     render() {
@@ -34,7 +34,7 @@ export class About extends Component {
                     </div>
 
                     <div className={"mx-auto"}>
-                        <img className={"ml-5 mb-10"} src={main} alt=""/>
+                        <img className={"ml-5 mb-10 mt-20"} src={main} alt=""/>
                     </div>
 
                 </div>

@@ -4,36 +4,52 @@
     "name": "Nike",
     "price": "5000",
     "currency": "LKR",
-    "image": "nike.png"
+    "image": "men's Sport Shoes.jpg"
   },
   {
     "id": 2,
     "name": "Men-Shoes",
     "price": "4000",
     "currency": "LKR",
-    "image": "men-shoes.png"
+    "image": "Men's Casual Shoes.png"
   },
   {
     "id": 3,
     "name": "Shoes",
     "price": "5000",
     "currency": "LKR",
-    "image": "Shoes.png"
+    "image": "Men's Navy Blue.jpg"
   },
   {
     "id": 4,
     "name": "Sneakers",
     "price": "3000",
     "currency": "LKR",
-    "image": "sneakers.png"
+    "image": "Women's Shoes.jpg"
   },
   {
-    "id": 4,
-    "name": "Women-Shoes",
+    "id": 5,
+    "name": "Woman-Shoes",
     "price": "2000",
     "currency": "LKR",
     "image": "Womens-Shoes.jpeg"
+  },
+  {
+    "id": 6,
+    "name": "High-Heals",
+    "price": "4000",
+    "currency": "LKR",
+    "image": "High Heals.jpeg"
+  },
+  {
+    "id": 7,
+    "name": "Women's Flat Shoes",
+    "price": "2000",
+    "currency": "LKR",
+    "image": "Women's Flat Shoes.jpg"
   }
+
+
 
 
 ]
