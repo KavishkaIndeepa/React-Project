@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 export class Navbar extends Component {
     render() {
         return (
-            <div className="p-4 bg-[#444544] flex justify-between">
+            <div className="p-4 bg-[#444544] flex flex-wrap justify-between">
                 <div className="flex">
                     <h1 className="text-2xl text-Primary">Brocelle Shoes</h1>
 
@@ -32,8 +32,11 @@ export class Navbar extends Component {
 
                 </ul>
 
+                <button className="text-[20px] text-[#e6f0e6] bg-green-400 pl-3 pr-3
+                                   hover:text-gray-600 rounded-2xl"><Link to="/login">Log In</Link></button>
+
                 <button className="text-[20px] text-[#e6f0e6] bg-green-400 pl-3 pr-3 mr-5
-                                   hover:text-gray-600 rounded-2xl"><Link to="/login">Sing In</Link></button>
+                                   hover:text-gray-600 rounded-2xl"><Link to="/signin">Sing In</Link></button>
 
 
             </div>

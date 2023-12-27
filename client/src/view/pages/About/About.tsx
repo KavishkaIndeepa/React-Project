@@ -5,11 +5,11 @@ import main from "../../../assets/Shop.jpeg";
 export class About extends Component {
     render() {
         return (
-            <div className={"mb-9"}>
+            <div className={"mb-9 flex flex-wrap"}>
                 <p className={"mt-12 ml-5 text-4xl font-bold"}>Welcome to Brocelle Shoes – Where Style Meets Comfort!</p>
                 <div className={"flex"}>
 
-                    <div className={"mt-20 ml-5 mb-5"}>
+                    <div className={"mt-20 ml-5 mb-5 mr-5"}>
 
                         At Brocelle Shoes, we believe that every step you take should be a stylish statement without
                         compromising on comfort. Our passion for footwear drives us to curate a diverse collection of
@@ -34,7 +34,7 @@ export class About extends Component {
                     </div>
 
                     <div className={"mx-auto"}>
-                        <img className={"ml-5 mb-10 mt-20"} src={main} alt=""/>
+                        <img className={" mb-10 mt-20"} src={main} alt=""/>
                     </div>
 
                 </div>
