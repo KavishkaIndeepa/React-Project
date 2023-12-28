@@ -6,7 +6,8 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 export class SignIn extends Component {
     render() {
         return (
-            <div className={"flex h-screen justify-center items-center"}>
+            <div className={"flex h-screen justify-center items-center"}
+                 style={{backgroundImage: 'url("/erol-ahmed-IHL-Jbawvvo-unsplash.jpg")'}}>
                 <div className={"h-80  mt-4 mb-4 pl-9 mx-auto border-white border-[0.5] rounded-2xl bg-gray-600 transition-opacity"}>
                     <h2 className={"pt-2 pb-2 text-3xl underline decoration-2 text-white mb-9 "}>Sign In</h2>
                     <form className={"h-auto p-2 justify-center mr-10 "}>
@@ -35,9 +36,8 @@ export class SignIn extends Component {
                         </div>
 
                         <div className={"pt-3"}>
-                            <Link className={"font-bold text-white flex items-center"} to="/">
+                            <Link className={"text-white flex items-center"} to="/">
                                 <FontAwesomeIcon icon={faArrowLeft} className="mr-2" />
-                                Back
                             </Link>
                         </div>
 

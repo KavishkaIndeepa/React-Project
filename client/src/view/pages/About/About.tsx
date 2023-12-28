@@ -6,10 +6,11 @@ export class About extends Component {
     render() {
         return (
             <div className={"mb-9 flex flex-wrap"}>
-                <p className={"mt-12 ml-5 text-4xl font-bold"}>Welcome to Brocelle Shoes – Where Style Meets Comfort!</p>
+                <p className={"mt-12 ml-5 text-4xl font-bold font-serif"}>Welcome to Brocelle Shoes – <span
+                    className={"font-serif text-purple-700"}>Where Style Meets Comfort!</span></p>
                 <div className={"flex"}>
 
-                    <div className={"mt-20 ml-5 mb-5 mr-5"}>
+                    <div className={"mt-20 ml-5 mb-5 mr-14"}>
 
                         At Brocelle Shoes, we believe that every step you take should be a stylish statement without
                         compromising on comfort. Our passion for footwear drives us to curate a diverse collection of
@@ -34,7 +35,8 @@ export class About extends Component {
                     </div>
 
                     <div className={"mx-auto"}>
-                        <img className={" mb-10 mt-20"} src={main} alt=""/>
+                        <img className={" mb-10 mt-20 mx-auto "} src={main} alt=""/>
+                    {/*    hover:scale-110 transition-transform*/}
                     </div>
 
                 </div>

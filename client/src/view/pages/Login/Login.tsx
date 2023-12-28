@@ -8,7 +8,7 @@ export class Login extends Component {
     render() {
         return (
             <div className={"flex h-screen justify-center items-center bg-cover bg-center bg-no-repeat"}
-                 style={{backgroundImage: 'url("../../../assets/erol-ahmed-IHL-Jbawvvo-unsplash.jpg")'}}>
+                 style={{backgroundImage: 'url("/erol-ahmed-IHL-Jbawvvo-unsplash.jpg")'}}>
                 <div
                     className={"h-80 mt-4 mb-4 pl-9 mx-auto border-white border-[0.5] rounded-2xl bg-gray-600"}>
                     <h2 className={"pt-2 pb-2 text-3xl underline decoration-2 text-white mb-9 "}>Log In</h2>
@@ -26,9 +26,9 @@ export class Login extends Component {
                             </button>
                         </div>
                         <div className={"pt-3"}>
-                            <Link className={"font-bold text-white flex items-center"} to="/">
+                            <Link className={"text-white flex items-center"} to="/">
                                 <FontAwesomeIcon icon={faArrowLeft} className="mr-2" />
-                                Back
+
                             </Link>
                         </div>
                     </form>
