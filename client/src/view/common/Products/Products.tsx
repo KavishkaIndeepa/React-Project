@@ -23,7 +23,7 @@ export class Products extends Component<ProductsProps, ProductState> {
         const image = require('../../../assets/products/'+data.image)
 
         return (
-            <div className={"w-52 h-auto  mr-2 mb-5 justify-center items-center border-gray-800 border-[1px] hover:bg-blue-600 hover:scale-110 transition-transform"}>
+            <div className={"w-52 h-auto  mr-2 mb-5 justify-center items-center border-gray-800 border-[1px] hover:bg-blue-600 hover:scale-110 transition-transform md:rounded"}>
                 <div>
                     <img className={"h-56"} src={image} alt=""/>
                 </div>
