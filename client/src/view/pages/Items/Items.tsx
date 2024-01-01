@@ -30,7 +30,12 @@ export class Items extends Component {
         // @ts-ignore
         const {data} = this.state;
         return (
+            <div>
+                <div className={"flex flex-wrap mt-6 items-center justify-center"}>
+                    <h1 className={"text-4xl"}> This is Items</h1>
+                </div>
             <div className={"flex"}>
+
                 <div className={"mt-5 mb-5 flex flex-wrap justify-center items-center mx-auto"}>
 
 
@@ -43,6 +48,7 @@ export class Items extends Component {
                     }
 
                 </div>
+            </div>
             </div>
         );
     }

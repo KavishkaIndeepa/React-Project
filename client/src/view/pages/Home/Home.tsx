@@ -2,6 +2,7 @@ import {Component} from "react";
 import '../../../App.css';
 // @ts-ignore
 import main from "../../../assets/Shop.jpeg"
+
 export class Home extends Component {
     render() {
 
@@ -16,14 +17,22 @@ export class Home extends Component {
 
         return (
 
-            <div className="flex flex-wrap bg-gray-900" style={textStyle}>
-                <div className="flex mt-5 flex-wrap justify-center items-center mx-auto">
-                    <div >
-                        <h1 className={"p-2 mt-52 ml-36 font-bold shadow-xl text-4xl font-mono"}>The Best Choice For A <br/><br/>
-                            <span className={"ml-36 text-Secondary font-serif"}>Where Style Meets Comfort!</span></h1>
+            <div className="flex flex-wrap " style={textStyle}>
 
+
+                    <div className={"ml-16"}>
+                        <h1 className={"p-2 mt-52 ml-2 font-bold text-blue-700 text-4xl shadow-xl font-mono bg-gray-600 bg-opacity-40 md:rounded"}>Step
+                            into Style !!</h1>
                     </div>
-                </div>
+
+                    <div className={"w-full mt-4 "}>
+                        <h1 className={"p-0.5 ml-28 mr-14 text-2xl bg-black bg-opacity-40 md:rounded"}>Explore our curated collection of trendy and comfortable footwear at Brocelle Shoes. From
+                            casual kicks to elegant heels, find the perfect pair for every occasion. Discover the latest
+                            fashion trends and step confidently into the season with our diverse range of shoes.
+                            Quality, comfort, and style—your journey to fabulous footwear starts here."</h1>
+                    </div>
+
+
             </div>
         );
     }

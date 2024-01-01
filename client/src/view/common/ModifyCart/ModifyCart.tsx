@@ -65,7 +65,7 @@ export class ModifyCart extends Component <ModifyCartsProps, ModifyCartState> {
         }
 
         return (
-            <div className={"w-full mt-4 p-[3px] bg-green-400 text-[15px] text-center"}>
+            <div className={"w-full mt-4 p-[3px] bg-red-500 text-[15px] text-center"}>
 
                 <button className={"float-left text-[15px] bg-yellow-300 rounded-lg h-6 w-7"} onClick={onDecreaseItemCount}>-</button>
                 <small className={"text-[15px] hover:text-white"}>{itemCount}</small>

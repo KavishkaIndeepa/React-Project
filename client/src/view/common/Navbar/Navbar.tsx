@@ -32,11 +32,17 @@ export class Navbar extends Component {
 
                 </ul>
 
-                <button className="text-[20px] text-[#e6f0e6] bg-green-400 pl-3 pr-3
+                <div className="flex flex-col md:flex-row space-y-2.5 md:space-y-0 md:space-x-2.5">
+
+                    <button className="text-[20px] text-[#e6f0e6] bg-green-400 pl-3 pr-3
                                    hover:text-gray-600 rounded-2xl"><Link to="/login">Log In</Link></button>
 
-                <button className="text-[20px] text-[#e6f0e6] bg-green-400 pl-3 pr-3 mr-5
+                    <button className="text-[20px] text-[#e6f0e6] bg-green-400 pl-3 pr-3 mr-5
                                    hover:text-gray-600 rounded-2xl"><Link to="/signin">Sing In</Link></button>
+
+                </div>
+
+
 
 
             </div>

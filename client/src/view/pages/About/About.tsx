@@ -29,7 +29,7 @@ export class About extends Component {
                         the office, or dancing the night away, we have the perfect pair to accompany you.
                         <br/>
                         <br/>
-                        Thank you for stepping into the world of [Your Shop Name]. We invite you to explore our
+                        Thank you for stepping into the world of Brocelle Shoes. We invite you to explore our
                         collection, embrace your unique style, and step out in confidence with shoes that speak volumes.
                         Your journey to fashionable comfort starts here!
                     </div>
