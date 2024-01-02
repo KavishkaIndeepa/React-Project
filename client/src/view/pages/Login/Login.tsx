@@ -8,9 +8,9 @@ export class Login extends Component {
     render() {
         return (
             <div className={"flex h-screen justify-center items-center bg-cover bg-center bg-no-repeat"}
-                 style={{backgroundImage: 'url("/erol-ahmed-IHL-Jbawvvo-unsplash.jpg")'}}>
+                 style={{backgroundImage: 'url("/Shoe-Rack-Img.png")'}}>
                 <div
-                    className={"h-80 mt-4 mb-4 pl-9 mx-auto border-white border-[0.5] rounded-2xl bg-gray-600"}>
+                    className={"h-80 mt-4 mb-4 pl-9 mx-auto border-white border-[0.5] rounded-2xl bg-gray-600 bg-opacity-50"}>
                     <h2 className={"pt-2 pb-2 text-3xl underline decoration-2 text-white mb-9 "}>Log In</h2>
                     <form className={"h-auto m-5 p-2 justify-center mr-10"}>
                         <div className="pb-2 mb-3">
