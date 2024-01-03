@@ -8,41 +8,39 @@ interface ShoppingCartProps {
 export class ShoppingCart extends Component <ShoppingCartProps> {
     render() {
         return (
-            <div className={"flex justify-center items-center min-h-screen"}>
-
-                <table className={" w-full mx-6"}>
-
-                    <tr className={"bg-gray-400"}>
-
-                        <th className={"text-[15px] font-normal border-black border-[0.5px] px-1"}> ID</th>
-                        <th className={"text-[15px] font-normal border-black border-[0.5px] px-1"}> Name</th>
-                        <th className={"text-[15px] font-normal border-black border-[0.5px] px-1"}> Unit Price</th>
-                        <th className={"text-[15px] font-normal border-black border-[0.5px] px-1"}> QTY</th>
-                        <th className={"text-[15px] font-normal border-black border-[0.5px] px-1"}> Total</th>
-
-                    </tr>
-
-                    {
-                        this.props.itemsList.length === 0 ?
+            <div className="flex justify-center items-center min-h-screen" style={{ backgroundImage: 'url("/Shoe-Rack-Img.png")' }}>
+                <div className="w-full overflow-x-auto">
+                    <table className="w-full divide-y divide-gray-600">
+                        <thead className="bg-gray-50">
+                        <tr>
+                            <th className="px-4 sm:px-6 py-3 text-left text-xs sm:text-sm font-medium font-serif uppercase tracking-wider">ID</th>
+                            <th className="px-4 sm:px-6 py-3 text-left text-xs sm:text-sm font-medium font-serif uppercase tracking-wider">Name</th>
+                            <th className="px-4 sm:px-6 py-3 text-left text-xs sm:text-sm font-medium font-serif uppercase tracking-wider">Unit Price</th>
+                            <th className="px-4 sm:px-6 py-3 text-left text-xs sm:text-sm font-medium font-serif uppercase tracking-wider">Quantity</th>
+                            <th className="px-4 sm:px-6 py-3 text-left text-xs sm:text-sm font-medium font-serif uppercase tracking-wider">Total</th>
+                        </tr>
+                        </thead>
+                        <tbody className="bg-white divide-y divide-gray-200">
+                        {this.props.itemsList.length === 0 ? (
                             <tr>
-                                <td colSpan={5} className='border-black border-[0.5px] px-1'>
-                                    <p className='text-[15px] font-normal text-center'>No items to display</p>
+                                <td colSpan={5} className="px-4 sm:px-6 py-4 whitespace-nowrap text-sm sm:text-base text-gray-500 text-center">
+                                    No items to display
                                 </td>
                             </tr>
-                            : this.props.itemsList.map((item) => (
-                                <tr className='border-black  border-[0.5px]'>
-                                    <td className={"text-[12px] border-black border-[0.5px] px-1"}>{item.product.id}</td>
-                                    <td className={"text-[12px] border-black border-[0.5px] px-1"}>{item.product.name}</td>
-                                    <td className={"text-[12px] border-black border-[0.5px] px-1"}>{item.product.price + ' ' + item.product.currency}</td>
-                                    <td className={"text-[12px] border-black border-[0.5px] px-1"}>{item.itemCount}</td>
-                                    <td className={"text-[12px] border-black border-[0.5px] px-1"}>{(item.product.price * item.itemCount) + ' ' + item.product.currency}</td>
+                        ) : (
+                            this.props.itemsList.map((item, index) => (
+                                <tr key={index} className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}>
+                                    <td className="px-4 sm:px-6 py-4 whitespace-nowrap text-sm sm:text-base text-gray-500">{item.product.id}</td>
+                                    <td className="px-4 sm:px-6 py-4 whitespace-nowrap text-sm sm:text-base text-gray-500">{item.product.name}</td>
+                                    <td className="px-4 sm:px-6 py-4 whitespace-nowrap text-sm sm:text-base text-gray-500">{item.product.price + " " + item.product.currency}</td>
+                                    <td className="px-4 sm:px-6 py-4 whitespace-nowrap text-sm sm:text-base text-gray-500">{item.itemCount}</td>
+                                    <td className="px-4 sm:px-6 py-4 whitespace-nowrap text-sm sm:text-base text-gray-500">{(item.product.price * item.itemCount) + " " + item.product.currency}</td>
                                 </tr>
                             ))
-                    }
-
-
-                </table>
-
+                        )}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         );
     }

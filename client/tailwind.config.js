@@ -6,7 +6,11 @@ module.exports = {
       colors:{
         Primary: '#07EB44',
         Secondary:'#0039F5'
-      }
+      },
+      fontFamily:{
+        Smokum: 'Smokum-Regular',
+        Ranger: 'Ranger-Italic-Shadow'
+      },
     },
   },
   plugins: [],

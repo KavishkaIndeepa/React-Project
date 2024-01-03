@@ -8,7 +8,7 @@ export class Navbar extends Component {
         return (
             <div className="p-4 bg-[#444544] flex flex-wrap justify-between">
                 <div className="flex">
-                    <h1 className="text-2xl text-Primary">Brocelle Shoes</h1>
+                    <h1 className="text-2xl text-Primary">Summer Shoes</h1>
 
                     <img className="h-10 w-10 ml-1" src={logo} alt=""/>
                 </div>

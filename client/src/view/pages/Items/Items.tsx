@@ -32,7 +32,9 @@ export class Items extends Component {
         return (
             <div>
                 <div className={"flex flex-wrap mt-6 items-center justify-center"}>
-                    <h1 className={"text-4xl"}> This is Items</h1>
+
+                        <h1 className={"text-4xl font-Ranger"}> Summer Collection <br/> <small className={"ml-14"}>Available Now</small></h1>
+
                 </div>
             <div className={"flex"}>
 
