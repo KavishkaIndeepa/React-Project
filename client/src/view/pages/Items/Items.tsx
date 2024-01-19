@@ -1,25 +1,37 @@
 import {Component} from "react";
 import {Products} from "../../common/Products/Products";
 
+import axios from "axios";
+import {Simulate} from "react-dom/test-utils";
+import error = Simulate.error;
+
 export class Items extends Component {
+
+    private api : any;
 
     constructor(props: {}| Readonly<{}>) {
         super(props);
+        this.api = axios.create({baseURL: `http://localhost:4000`})
         this.state={
             data:[],
         }
     }
 
     componentDidMount() {
-        this.fetchData();
+        this.fetchData().then(r => console.log("Data fetch completed"));
     }
 
     fetchData = async () =>{
         try {
-            // @ts-ignore
-            const response= await fetch('/product-data.json');
-            const jsonData = await response.json();
-            this.setState({data:jsonData});
+
+            this.api.get('products/all').then((res: {data: any}) => {
+                const jsonData = res.data;
+                this.setState({data:jsonData});
+            }).catch((error: any) => {
+                console.error("Axios Error: ", error)
+            });
+
+
         }catch (error) {
             console.log("Error fetching Data")
         }
