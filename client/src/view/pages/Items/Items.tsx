@@ -42,8 +42,8 @@ export class Items extends Component {
         // @ts-ignore
         const {data} = this.state;
         return (
-            <div>
-                <div className={"flex flex-wrap mt-6 items-center justify-center"}>
+            <div style={{backgroundImage: 'url("/Shoe-Rack-Img.png")'}}>
+                <div className={"flex flex-wrap mt-6 items-center justify-center "}>
 
                         <h1 className={"text-4xl font-Ranger"}> Summer Collection <br/> <small className={"ml-14"}>Available Now</small></h1>
 

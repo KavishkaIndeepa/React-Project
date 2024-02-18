@@ -5,11 +5,28 @@ interface ShoppingCartProps {
     itemsList: CartItems[];
 }
 
-export class ShoppingCart extends Component <ShoppingCartProps> {
+interface ShoppingCartState {
+    total: number;
+    itemList: CartItems[];
+}
+
+export class ShoppingCart extends Component <ShoppingCartProps, ShoppingCartState> {
+
+    constructor(props: ShoppingCartProps) {
+        super(props);
+        this.state = {
+            total: this.calculateTotal(props.itemsList),
+            itemList: props.itemsList,
+        };
+    }
+
+    calculateTotal(itemList: CartItems[]) {
+        return itemList.reduce((acc, item) => acc + item.product.price * item.itemCount, 0);
+    }
     render() {
         return (
-            <div className="flex justify-center items-center min-h-screen" style={{ backgroundImage: 'url("/Shoe-Rack-Img.png")' }}>
-                <div className="w-full overflow-x-auto">
+            <div className="flex-row flex-wrap  min-h-screen" style={{ backgroundImage: 'url("/Shoe-Rack-Img.png")' }}>
+                <div className="flex justify-center items-center w-full overflow-x-auto">
                     <table className="w-full divide-y divide-gray-600">
                         <thead className="bg-gray-50">
                         <tr>
@@ -41,7 +58,30 @@ export class ShoppingCart extends Component <ShoppingCartProps> {
                         </tbody>
                     </table>
                 </div>
+
+                <div className="flex justify-center items-center ml-[900px] text-2xl ">
+                    {/*Total Amount : {total} LKR*/}
+                    Total Amount : {this.state.total} LKR
+                    <button
+                        className="ml-10 mt-3 mb-32 bg-green-400  w-56 h-16 pt-3 font-bold hover:bg-orange-500 hover:text-white text-2xl rounded-lg"
+                        onClick={this.clickOnProceed}>
+                        Proceed Payment
+                    </button>
+                </div>
+
             </div>
         );
     }
+
+    private clickOnProceed = () => {
+        // @ts-ignore
+        alert("Payment Confirmed by COD method!");
+
+        // Reset the total to 0 after the payment is confirmed
+        // this.setState({ total: 0,  itemList: []  });
+
+       // @ts-ignore
+        window.location.reload();
+    }
 }
+
