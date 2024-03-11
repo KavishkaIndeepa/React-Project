@@ -61,7 +61,7 @@ export class Products extends Component<ProductsProps, ProductState> {
         this.setState({isActive: !this.state.isActive},()=>{
             console.log(this.state.isActive);
             // @ts-ignore
-            alert(this.state.isActive)
+            // alert(this.state.isActive)
         })
     }
 }

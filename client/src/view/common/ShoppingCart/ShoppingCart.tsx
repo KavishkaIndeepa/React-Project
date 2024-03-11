@@ -27,7 +27,7 @@ export class ShoppingCart extends Component <ShoppingCartProps, ShoppingCartStat
         return (
             <div className="flex-row flex-wrap  min-h-screen" style={{ backgroundImage: 'url("/Shoe-Rack-Img.png")' }}>
                 <div className="flex justify-center items-center w-full overflow-x-auto">
-                    <table className="w-full divide-y divide-gray-600">
+                    <table className="w-full divide-y divide-gray-600 mt-20">
                         <thead className="bg-gray-50">
                         <tr>
                             <th className="px-4 sm:px-6 py-3 text-left text-xs sm:text-sm font-medium font-serif uppercase tracking-wider">ID</th>

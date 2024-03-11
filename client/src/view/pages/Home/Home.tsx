@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 import '../../../App.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowLeft, faShoppingCart} from "@fortawesome/free-solid-svg-icons";
+import {Testimonials} from "./Testimonials";
 
 
 export class Home extends Component {
@@ -33,14 +34,18 @@ export class Home extends Component {
                 </div>
 
 
-                <div className={"w-full md:pt-2 md:pb-2 md:pl-4 md:pr-4"}>
+                <div className={"w-full md:pt-16 md:pb-16 md:pl-4 md:pr-4"}>
                     <h1 className={"p-2 md:ml-8 md:mr-14 text-xl md:text-2xl hover:font-semibold"}>
-                        <span className={"text-[48px]"}>E</span>xplore
+                        <span className={"text-[48px]"}>"E</span>xplore
                         our curated collection of trendy and comfortable footwear at <span className={"text-Primary"}>Summer Shoes</span>.
                         From casual kicks
                         to elegant heels, find the perfect pair for every occasion. Discover the latest fashion trends
                         and step confidently into the season with our diverse range of shoes. Quality, comfort, and
-                        style-your journey to fabulous footwear starts here.</h1>
+                        style-your journey to fabulous footwear starts here."</h1>
+                </div>
+
+                <div>
+                    <Testimonials />
                 </div>
 
 
