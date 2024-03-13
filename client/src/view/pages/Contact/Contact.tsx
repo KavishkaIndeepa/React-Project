@@ -1,8 +1,9 @@
 import React, {Component} from "react";
 import axios from "axios";
 import {Link} from "react-router-dom";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faShoppingCart} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTwitter, faFacebook, faInstagram, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+
 
 interface ContactProps {
     data: any;
@@ -92,7 +93,18 @@ export class Contact extends Component<ContactProps, ContactState> {
                                     Submit
                                 </button>
                             </div>
+
+                            <div className="flex justify-center mt-4 ">
+                                <FontAwesomeIcon icon={faTwitter} className="text-3xl  mr-4 cursor-pointer hover:text-green-400" />
+                                <FontAwesomeIcon icon={faFacebook} className="text-3xl mr-4 cursor-pointer hover:text-green-400" />
+                                <FontAwesomeIcon icon={faInstagram} className="text-3xl  mr-4 cursor-pointer hover:text-green-400" />
+                                <FontAwesomeIcon icon={faWhatsapp} className="text-3xl  mr-4 cursor-pointer hover:text-green-400" />
+                            </div>
+
                         </form>
+
+
+
                     </div>
                 </div>
 

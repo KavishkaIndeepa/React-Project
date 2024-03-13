@@ -34,7 +34,7 @@ export class Navbar extends Component {
         // @ts-ignore
         const { isScrolled } = this.state;
         return (
-            <div className={`p-4 bg-[#444544] flex flex-wrap justify-between fixed w-full z-50 ${isScrolled ? 'top-0' : ''}`}>
+            <div className={`p-4 bg-[#222322] flex flex-wrap justify-between fixed w-full z-50 ${isScrolled ? 'top-0' : ''}`}>
                 <div className="flex">
                     <h1 className="text-2xl text-Primary">Summer Shoes</h1>
                 </div>
@@ -60,7 +60,7 @@ export class Navbar extends Component {
                 </div>
 
                 <div className="flex flex-col md:flex-row space-y-2.5 md:space-y-0 md:space-x-2.5">
-                    <button className="text-[20px] text-[#e6f0e6] bg-green-400 pl-3 pr-3 hover:text-gray-600 rounded-2xl"><Link to="/login">Log In</Link></button>
+                    {/*<button className="text-[20px] text-[#e6f0e6] bg-green-400 pl-3 pr-3 hover:text-gray-600 rounded-2xl"><Link to="/login">Log In</Link></button>*/}
                     <button className="text-[20px] text-[#e6f0e6] bg-green-400 pl-3 pr-3 mr-5 hover:text-gray-600 rounded-2xl"><Link to="/signin">Sing In</Link></button>
                 </div>
             </div>

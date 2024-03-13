@@ -45,6 +45,7 @@
     ]
   },
   "devDependencies": {
+    "@fortawesome/free-brands-svg-icons": "^6.5.1",
     "@types/react-slick": "^0.23.13",
     "autoprefixer": "^10.4.16",
     "postcss": "^8.4.32",
