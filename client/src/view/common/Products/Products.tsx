@@ -25,34 +25,24 @@ export class Products extends Component<ProductsProps, ProductState> {
         const image = require('../../../assets/products/'+data.image)
 
         return (
-            <div className={"w-52 h-auto  mr-2 mb-5 m-5 justify-center items-center border-gray-800 border-[1px] hover:bg-blue-600 hover:scale-110 transition-transform md:rounded"}>
-                <div>
-                    <img className={"h-56"} src={image} alt=""/>
-                </div>
-                <div className={"flex flex-wrap"}>
-
-                    <div>
-                        <h3 className={"text-secondary  pl-2 mr-2 mt-0.5 hover:text-white font-serif"}> {data.name} </h3>
+            <div className="max-w-sm rounded overflow-hidden shadow-lg mx-auto my-5">
+                <img className="w-full h-56 object-cover" src={image} alt={data.name} />
+                <div className="px-6 py-4">
+                    <div className="font-bold text-xl mb-2">{data.name}</div>
+                    <p className="text-gray-700 text-base mb-2">{data.description}</p>
+                    <div className="flex items-center justify-between">
+                        <span className="text-gray-900 font-bold text-xl">{data.price} <span className="text-sm">{data.currency}</span></span>
+                        <div > {this.state.isActive ?
+                            <ModifyCart data={{product: data, isAdded: this.state.isActive}}/> :
+                            <button
+                            className={`px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700 focus:outline-none`}
+                            onClick={this.addToCartOnClick}
+                        >
+                            Add to Cart <FontAwesomeIcon icon={faShoppingCart} className="ml-2" />
+                        </button>}
+                        </div>
                     </div>
-                    <div className={"bg-yellow-300 ml-1 p-0.3 md:rounded-lg pr-2 mt-2"}>
-                        <h3 className={"text-[12px] pl-2 "}>{data.price} <small className={"text-[7px]"}>{data.currency}</small></h3>
-                    </div>
-
-                    <div>
-                        <h3 className={"text-[12px] pl-2 mt-2 hover:text-white"}> {data.description}</h3>
-                    </div>
-
                 </div>
-
-                <div className={"flex justify-center"}>{
-                    this.state.isActive ? <ModifyCart data={{product: data, isAdded: this.state.isActive}}/>:
-                        <button className={"w-full mt-4 p-{2.5px} bg-green-400 text-{8px} hover:text-white"}
-                                onClick={this.addToCartOnClick}>Add to Cart
-                            <FontAwesomeIcon icon={faShoppingCart} className="ml-2" /> </button>
-                }
-
-                </div>
-
             </div>
         );
     }

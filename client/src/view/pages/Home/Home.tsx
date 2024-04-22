@@ -16,10 +16,11 @@ export class Home extends Component {
                 <div className="flex flex-col justify-center items-center min-h-screen bg-cover bg-fixed relative"
                      style={{backgroundImage: 'url("/Sportshoe (2).jpg")'}}>
 
-                    <div className={"absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center"}>
+                    <div
+                        className={"absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center"}>
                         <h1 className={"font-bold text-white text-4xl shadow-xl font-mono bg-gray-600 bg-opacity-40 md:rounded-lg p-6"}>
-                            <span className={"text-white text-[64px]"} style={{ textShadow: "2px 2px 0px #000" }}>A</span><span
-                            className={"text-white font-bold"} style={{ textShadow: "2px 2px 0px #000" }}>re you ready to Lead the way? </span>
+                            <span className={"text-white text-[64px]"} style={{textShadow: "2px 2px 0px #000"}}>A</span><span
+                            className={"text-white font-bold"} style={{textShadow: "2px 2px 0px #000"}}>re you ready to Lead the way? </span>
                         </h1>
                     </div>
 
@@ -44,10 +45,25 @@ export class Home extends Component {
                         style-your journey to fabulous footwear starts here."</h1>
                 </div>
 
-                <div>
-                    <Testimonials />
+                <div className={"flex flex-row m-5"}>
+                    <div className="flex-row w-4/12 h-80 bg-cover m-2" style={{backgroundImage: 'url("/black-sports-shoe.avif")', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                        <h1 className="text-white text-center">hiiiiii</h1>
+                    </div>
+
+                    <div className="flex-row w-4/12 h-80 bg-cover m-2" style={{backgroundImage: 'url("/new-arrival.avif")', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                        <h1 className="text-white text-center">hiiiiii</h1>
+                    </div>
+
+                    <div className="flex-row w-4/12 h-80 bg-cover m-2" style={{backgroundImage: 'url("/black-sports-shoe.avif")', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                        <h1 className="text-white text-center">hiiiiii</h1>
+                    </div>
+
                 </div>
 
+
+                <div>
+                    <Testimonials/>
+                </div>
 
 
             </div>

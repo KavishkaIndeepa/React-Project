@@ -43,11 +43,17 @@ export class Items extends Component {
         const {data} = this.state;
         return (
             <div >
-                <div className={"flex flex-wrap  items-center justify-center "}>
+                <div className="flex flex-col justify-center items-center min-h-screen bg-cover bg-fixed relative"
+                     style={{backgroundImage: 'url("/Sportshoe (2).jpg")'}}>
+
+                    <div className={"flex flex-wrap  items-center justify-center "}>
 
                         <h1 className={"text-4xl font-Ranger mt-20 "}> Summer Collection <br/> <small className={"ml-14"}>Available Now</small></h1>
 
+                    </div>
+
                 </div>
+
             <div className={"flex"}>
 
                 <div className={"mt-5 mb-5 flex flex-wrap justify-center items-center mx-auto"}>

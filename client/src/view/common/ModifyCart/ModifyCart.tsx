@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { CartItems } from "../../../model/CartItems";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 interface ModifyCartsProps {
     data: any;
@@ -65,11 +67,22 @@ export class ModifyCart extends Component<ModifyCartsProps, ModifyCartState> {
         const { itemCount } = this.state;
 
         return (
-            <div className="w-full mt-4 p-[3px] bg-red-500 text-[15px] text-center">
-                <button className="float-left text-[15px] bg-yellow-300 rounded-lg h-6 w-7" onClick={this.onDecreaseItemCount}>-</button>
-                <small className="text-[15px] hover:text-white">{itemCount}</small>
-                <button className="float-right text-[15px] bg-yellow-300 rounded-lg h-6 w-7" onClick={this.onIncreaseItemCount}>+</button>
+            <div className="flex items-center">
+                <button
+                    className="bg-red-600 text-white rounded-l px-3 py-2 hover:bg-green-700 focus:outline-none"
+                    onClick={this.onDecreaseItemCount}
+                >
+                    <FontAwesomeIcon icon={faMinus} />
+                </button>
+                <span className="px-3 py-2 bg-green-500 text-white">{itemCount}</span>
+                <button
+                    className="bg-red-600 text-white rounded-r px-3 py-2 hover:bg-green-700 focus:outline-none"
+                    onClick={this.onIncreaseItemCount}
+                >
+                    <FontAwesomeIcon icon={faPlus} />
+                </button>
             </div>
+
         );
     }
 }
