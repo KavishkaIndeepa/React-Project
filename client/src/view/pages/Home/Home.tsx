@@ -5,6 +5,9 @@ import '../../../App.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowLeft, faShoppingCart} from "@fortawesome/free-solid-svg-icons";
 import {Testimonials} from "./Testimonials";
+// @ts-ignore
+import pair from "../../../assets/pair-trainers.png";
+
 
 
 export class Home extends Component {
@@ -36,7 +39,7 @@ export class Home extends Component {
 
 
                 <div className={"w-full md:pt-16 md:pb-16 md:pl-4 md:pr-4"}>
-                    <h1 className={"p-2 md:ml-8 md:mr-14 text-xl md:text-2xl hover:font-semibold"}>
+                    <h1 className={"p-2 md:ml-8 md:mr-14 text-xl md:text-2xl"}>
                         <span className={"text-[48px]"}>"E</span>xplore
                         our curated collection of trendy and comfortable footwear at <span className={"text-Primary"}>Summer Shoes</span>.
                         From casual kicks
@@ -46,18 +49,29 @@ export class Home extends Component {
                 </div>
 
                 <div className={"flex flex-row m-5"}>
-                    <div className="flex-row w-4/12 h-80 bg-cover m-2" style={{backgroundImage: 'url("/black-sports-shoe.avif")', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                        <h1 className="text-white text-center">hiiiiii</h1>
+
+                    <div className="flex-row w-4/12 h-80 bg-cover m-2 " style={{backgroundImage: 'url("/black-sports-shoe.avif")', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                        <h1 className="text-white text-center border-transparent border-2 border-solid transition duration-300 hover:border-white">Sale 50% off <br/><span className={"text-white text-center text-3xl font-semibold"}>SPORT SHOES</span></h1>
                     </div>
 
                     <div className="flex-row w-4/12 h-80 bg-cover m-2" style={{backgroundImage: 'url("/new-arrival.avif")', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                        <h1 className="text-white text-center">hiiiiii</h1>
+                        <h1 className="text-white text-center border-transparent border-2 border-solid transition duration-300 hover:border-white">Sale 50% off <br/><span className={"text-white text-center text-3xl font-semibold"}>NEW ARRIVAL</span></h1>
                     </div>
 
-                    <div className="flex-row w-4/12 h-80 bg-cover m-2" style={{backgroundImage: 'url("/black-sports-shoe.avif")', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                        <h1 className="text-white text-center">hiiiiii</h1>
+                    <div className="flex-row w-4/12 h-80 bg-cover m-2" style={{backgroundImage: 'url("/new sneakers.jpg")', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                        <h1 className="text-white text-center border-transparent border-2 border-solid transition duration-300 hover:border-white">Sale 50% off <br/><span className={"text-white text-center text-3xl font-semibold"}>NEW SNEAKERS</span></h1>
                     </div>
 
+
+                </div>
+
+                <div className={"flex bg-cover h-auto bg-fixed bg-blend-color-burn"} style={{backgroundImage: 'url("/background.jpg")'}}>
+                    <div className={"w-full flex p-6"}>
+                        <div className={"flex w-6/12 m-2 justify-center border-b-4 border-r-2 border-white"}>
+                            <img src={pair} alt="" className={"w-full h-auto "} style={{ borderRadius: '8px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', objectFit: 'cover' }}/>
+                        </div>
+                        <div className={"flex w-6/12 m-2"}> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi autem cum doloribus eum hic ipsum maiores minus nemo nobis nostrum numquam obcaecati officia, optio, pariatur quia quidem soluta tempora temporibus!</div>
+                    </div>
                 </div>
 
 

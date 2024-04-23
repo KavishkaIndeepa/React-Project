@@ -69,14 +69,14 @@ export class ModifyCart extends Component<ModifyCartsProps, ModifyCartState> {
         return (
             <div className="flex items-center">
                 <button
-                    className="bg-red-600 text-white rounded-l px-3 py-2 hover:bg-green-700 focus:outline-none"
+                    className="bg-red-500 text-white rounded-l px-3 py-2 hover:bg-red-700 focus:outline-none"
                     onClick={this.onDecreaseItemCount}
                 >
                     <FontAwesomeIcon icon={faMinus} />
                 </button>
-                <span className="px-3 py-2 bg-green-500 text-white">{itemCount}</span>
+                <span className="px-3 py-2 bg-red-600 text-white">{itemCount}</span>
                 <button
-                    className="bg-red-600 text-white rounded-r px-3 py-2 hover:bg-green-700 focus:outline-none"
+                    className="bg-red-500 text-white rounded-r px-3 py-2 hover:bg-red-700 focus:outline-none"
                     onClick={this.onIncreaseItemCount}
                 >
                     <FontAwesomeIcon icon={faPlus} />
