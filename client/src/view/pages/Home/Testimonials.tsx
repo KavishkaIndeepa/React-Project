@@ -31,8 +31,9 @@ export class Testimonials extends Component {
             autoplaySpeed: 3000
         };
         return (
-            <div className="testimonials-container bg-green-50">
-                <h2 className={"text-2xl m-2 font-Smokum font-semibold"}>Testimonials</h2>
+            <div className="testimonials-container ">
+                <h2 className={"text-2xl m-2 font-Smokum font-semibold"}>What Our Clients Say</h2>
+                <p className={" m-2 font-Smokum text-gray-500 "}>This is just a simple text made for this unique and awesome template, you can replace it with any text.</p>
                 <Slider {...settings}>
 
                     {/*1*/}

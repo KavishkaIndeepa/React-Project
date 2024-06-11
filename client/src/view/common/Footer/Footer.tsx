@@ -7,7 +7,7 @@ export class Footer extends Component {
             <div className="flex-row flex-wrap p-4 bg-[#222322] justify-center mt-6">
 
                 <div className={"flex justify-center text-cyan-50"}>
-                    <p className="text[10px] pr-2 hover:font-bold">Copyright @2023</p>
+                    <p className="text[10px] pr-2 hover:font-bold">Copyright @2024</p>
                     <h1 className="text-1xl text-third hover:font-bold">Kavishka Indeepa</h1>
                 </div>
 
