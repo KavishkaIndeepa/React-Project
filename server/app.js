@@ -11,6 +11,7 @@ DBConnection().then(r => console.log(r));
 var indexRouter = require('./routes/index');
 var productsRouter = require('./routes/products');
 var contactRouter = require('./routes/contact');
+var adminRouter = require('./routes/admin');
 
 var app = express();
 
@@ -31,6 +32,7 @@ app.use(cors());
 app.use('/', indexRouter);
 app.use('/products', productsRouter);
 app.use('/contact', contactRouter);
+app.use('/signin', adminRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

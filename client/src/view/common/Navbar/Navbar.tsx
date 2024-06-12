@@ -75,9 +75,9 @@ export class Navbar extends Component {
                     <button className="text-[20px]">
                         <Link to="/login">Log In</Link>
                     </button>
-                    <button className="text-[20px]">
-                        <Link to="/signin">Sign In</Link>
-                    </button>
+                    {/*<button className="text-[20px]">*/}
+                    {/*    <Link to="/signin">Sign In</Link>*/}
+                    {/*</button>*/}
                 </div>
 
                 <div className="md:hidden flex items-center justify-end w-4/12">
@@ -113,9 +113,9 @@ export class Navbar extends Component {
                             <li className="text-[18px]">
                                 <Link to="/login" className="hover:text-gray-600">Log In</Link>
                             </li>
-                            <li className="text-[18px]">
-                                <Link to="/signin" className="hover:text-gray-600">Sign In</Link>
-                            </li>
+                            {/*<li className="text-[18px]">*/}
+                            {/*    <Link to="/signin" className="hover:text-gray-600">Sign In</Link>*/}
+                            {/*</li>*/}
                         </ul>
                     </div>
                 )}

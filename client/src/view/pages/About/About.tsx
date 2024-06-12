@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 // @ts-ignore
 import about from "../../../assets/Sportshoe (1).jpg";
+// @ts-ignore
 import benefit from "../../../assets/shiny-black-leatheri.jpg"
 
 export class About extends Component {
