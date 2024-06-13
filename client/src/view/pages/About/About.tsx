@@ -76,9 +76,6 @@ export class About extends Component {
 
                 <div className="p-6 md:p-12">
                     <div className="text-center">
-                        <div className="bg-blue-500 text-white text-xl font-bold py-2 px-4 rounded-full inline-block mb-4">
-                            Benefits
-                        </div>
                         <h2 className="text-2xl md:text-3xl font-bold mb-4">Why Choose Summer Shoes</h2>
                         {/*<p className="text-gray-700 max-w-2xl mx-auto mb-6">*/}
                         {/*    Pet care is renowned pet care service and solution for the lifetime. We love pets and believe pets make us better people.*/}

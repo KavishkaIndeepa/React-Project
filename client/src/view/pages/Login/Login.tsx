@@ -85,7 +85,7 @@ export class Login extends Component {
                             </div>
                         </div>
                         <div>
-                            <button type="submit" className="w-full bg-secondary text-[15px] p-[10px] rounded-3xl hover:bg-green-500 text-white font-bold">
+                            <button type="submit" className="w-full  text-[15px] p-[10px] rounded-3xl hover:bg-green-500 text-white font-bold">
                                 Log In
                             </button>
                         </div>
