@@ -18,6 +18,7 @@ type State = {
     showDropdown: boolean;
     items: Item[];
     newItem: Item;
+    editingItemId: number | null;
     successMessage: string | null;
     errorMessage: string | null;
 };
@@ -35,6 +36,7 @@ export class Admin extends Component<{}, State> {
             description: '',
             image: ''
         },
+        editingItemId: null,
         successMessage: null,
         errorMessage: null
     };
@@ -45,7 +47,7 @@ export class Admin extends Component<{}, State> {
 
     fetchData = async () => {
         try {
-            const res = await axios.get('http://localhost:4000/products');
+            const res = await axios.get('http://localhost:4000/signin');
             this.setState({ items: res.data });
         } catch (error) {
             console.error("Error fetching data: ", error);
@@ -53,7 +55,7 @@ export class Admin extends Component<{}, State> {
     };
 
     handleShow = () => this.setState({ showModal: true });
-    handleClose = () => this.setState({ showModal: false });
+    handleClose = () => this.setState({ showModal: false, editingItemId: null, newItem: { id: 0, name: '', price: 0, currency: '', description: '', image: '' } });
 
     handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         // @ts-ignore
@@ -75,6 +77,15 @@ export class Admin extends Component<{}, State> {
         }
     };
 
+    handleAddOrUpdateItem = async () => {
+        if (this.state.editingItemId !== null) {
+            // @ts-ignore
+            await this.handleUpdateItem(this.state.editingItemId);
+        } else {
+            await this.handleAddItem();
+        }
+    };
+
     handleAddItem = async () => {
         try {
             const { newItem } = this.state;
@@ -90,7 +101,7 @@ export class Admin extends Component<{}, State> {
                 formData.append('image', newItem.image);
             }
 
-            const res = await axios.post('http://localhost:4000/products/products', formData, {
+            const res = await axios.post('http://localhost:4000/signin', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -110,6 +121,13 @@ export class Admin extends Component<{}, State> {
                 successMessage: "Item added successfully!",
                 errorMessage: null
             }));
+            // this.setState(prevState => ({
+            //     items: [...prevState.items, res.data],
+            //     showModal: false,
+            //     newItem: { id: 0, name: '', price: 0, currency: '', description: '', image: '' },
+            //     successMessage: "Item added successfully!",
+            //     errorMessage: null
+            // }));
         } catch (error) {
             console.error("Error adding item:", error);
             this.setState({
@@ -120,9 +138,26 @@ export class Admin extends Component<{}, State> {
     };
 
 
+    // handleDeleteItem = async (id: number) => {
+    //     try {
+    //         await axios.delete(`http://localhost:4000/${id}`);
+    //         this.setState(prevState => ({
+    //             items: prevState.items.filter(item => item.id !== id),
+    //             successMessage: "Item deleted successfully!",
+    //             errorMessage: null
+    //         }));
+    //     } catch (error) {
+    //         console.error("Error deleting item: ", error);
+    //         this.setState({
+    //             successMessage: null,
+    //             errorMessage: "Error deleting item. Please try again."
+    //         });
+    //     }
+    // };
+
     handleDeleteItem = async (id: number) => {
         try {
-            await axios.delete(`http://localhost:4000/products/${id}`);
+            await axios.delete(`http://localhost:4000/signin/${id}`);
             this.setState(prevState => ({
                 items: prevState.items.filter(item => item.id !== id),
                 successMessage: "Item deleted successfully!",
@@ -153,16 +188,24 @@ export class Admin extends Component<{}, State> {
                 formData.append('image', updatedData.image);
             }
 
-            const res = await axios.put(`http://localhost:4000/products/${id}`, formData, {
+            const res = await axios.put(`http://localhost:4000/signin/${id}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             });
 
+            // this.setState(prevState => ({
+            //     items: prevState.items.map(item => item.id === id ? res.data : item),
+            //     successMessage: "Item updated successfully!",
+            //     errorMessage: null
+            // }));
             this.setState(prevState => ({
                 items: prevState.items.map(item => item.id === id ? res.data : item),
+                showModal: false,
+                newItem: { id: 0, name: '', price: 0, currency: '', description: '', image: '' },
                 successMessage: "Item updated successfully!",
-                errorMessage: null
+                errorMessage: null,
+                editingItemId: null
             }));
         } catch (error) {
             console.error("Error updating item: ", error);
@@ -173,6 +216,14 @@ export class Admin extends Component<{}, State> {
         }
     };
 
+    handleEditItem = (item: Item) => {
+        this.setState({
+            newItem: { ...item, image: '' },
+            editingItemId: item.id,
+            showModal: true
+        });
+    };
+
     toggleDropdown = () => {
         this.setState(prevState => ({ showDropdown: !prevState.showDropdown }));
     };
@@ -181,7 +232,7 @@ export class Admin extends Component<{}, State> {
         const { showModal, showDropdown, items, newItem, successMessage, errorMessage } = this.state;
 
         return (
-            <div className="container mx-auto mt-5">
+            <div className="container mx-auto mt-5 p-10">
                 <div className="border-b-4 flex justify-between items-center">
                     <div></div>
                     <div className="relative px-4">
@@ -245,7 +296,7 @@ export class Admin extends Component<{}, State> {
                                     Cancel
                                 </button>
                                 <button className="bg-blue-500 text-white py-2 px-4 rounded" onClick={this.handleAddItem}>
-                                    Add
+                                    {this.state.editingItemId !== null ? "Update" : "Add"}
                                 </button>
                             </div>
                         </div>
@@ -277,7 +328,7 @@ export class Admin extends Component<{}, State> {
                             <td className="py-2">{item.description}</td>
                             <td className="py-2"><img src={item.image} alt={item.name} className="w-16 h-16 object-cover" /></td>
                             <td className="py-2">
-                                <button className="text-blue-500 mr-2">
+                                <button className="text-blue-500 mr-2" onClick={() => this.handleEditItem(item)}>
                                     <FontAwesomeIcon icon={faEdit} />
                                 </button>
                                 <button className="text-red-500" onClick={() => this.handleDeleteItem(item.id)}>
