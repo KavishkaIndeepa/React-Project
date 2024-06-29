@@ -1,16 +1,16 @@
 import React, { Component, ChangeEvent, MouseEvent } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash, faUser } from '@fortawesome/free-solid-svg-icons';
-import axios from "axios/index";
+import axios from "axios";
 
 type Item = {
-    id: string;
+    id: number;
     name: string;
-    unitPrice: number;
-    quantity: number;
-    total: number;
+    price: number;
+    currency: string;
+    description: string;
     // @ts-ignore
-    file: File | null;
+    image: string | File;
 };
 
 type State = {
@@ -18,6 +18,8 @@ type State = {
     showDropdown: boolean;
     items: Item[];
     newItem: Item;
+    successMessage: string | null;
+    errorMessage: string | null;
 };
 
 export class Admin extends Component<{}, State> {
@@ -26,96 +28,159 @@ export class Admin extends Component<{}, State> {
         showDropdown: false,
         items: [],
         newItem: {
-            id: '',
+            id: 0,
             name: '',
-            unitPrice: 0,
-            quantity: 0,
-            total: 0,
-            file: null
-        }
+            price: 0,
+            currency: '',
+            description: '',
+            image: ''
+        },
+        successMessage: null,
+        errorMessage: null
     };
 
-    // private api : any;
-    // constructor(props: {}| Readonly<{}>) {
-    //     super(props);
-    //     this.api = axios.create({baseURL: `http://localhost:4000`})
-    //     this.state={
-    //         // @ts-ignore
-    //         data:[],
-    //     }
-    // }
-    //
-    // componentDidMount() {
-    //     this.fetchData().then(r => console.log("Data fetch completed"));
-    // }
-    //
-    // fetchData = async () =>{
-    //     try {
-    //
-    //         this.api.get('products/all').then((res: {data: any}) => {
-    //             const jsonData = res.data;
-    //             // @ts-ignore
-    //             this.setState({data:jsonData});
-    //         }).catch((error: any) => {
-    //             console.error("Axios Error: ", error)
-    //         });
-    //
-    //
-    //     }catch (error) {
-    //         console.log("Error fetching Data")
-    //     }
-    // }
+    componentDidMount() {
+        this.fetchData();
+    }
+
+    fetchData = async () => {
+        try {
+            const res = await axios.get('http://localhost:4000/products');
+            this.setState({ items: res.data });
+        } catch (error) {
+            console.error("Error fetching data: ", error);
+        }
+    };
 
     handleShow = () => this.setState({ showModal: true });
     handleClose = () => this.setState({ showModal: false });
 
     handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         // @ts-ignore
-        const { name, value } = e.target;
-        this.setState({
-            newItem: {
-                ...this.state.newItem,
-                [name]: name === "unitPrice" || name === "quantity" ? Number(value) : value
-            }
-        });
+        const { name, value, files } = e.target;
+        if (name === 'image' && files) {
+            this.setState({
+                newItem: {
+                    ...this.state.newItem,
+                    [name]: files[0]
+                }
+            });
+        } else {
+            this.setState({
+                newItem: {
+                    ...this.state.newItem,
+                    [name]: value
+                }
+            });
+        }
     };
 
-    handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-        this.setState({
-            newItem: {
-                ...this.state.newItem,
-                // @ts-ignore
-                file: e.target.files ? e.target.files[0] : null
+    handleAddItem = async () => {
+        try {
+            const { newItem } = this.state;
+            // @ts-ignore
+            const formData = new FormData();
+            formData.append('id', newItem.id.toString());
+            formData.append('name', newItem.name);
+            formData.append('price', newItem.price.toString());
+            formData.append('currency', newItem.currency);
+            formData.append('description', newItem.description);
+            // @ts-ignore
+            if (newItem.image instanceof File) {
+                formData.append('image', newItem.image);
             }
-        });
+
+            const res = await axios.post('http://localhost:4000/products/products', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+
+            this.setState(prevState => ({
+                items: [...prevState.items, res.data],
+                showModal: false,
+                newItem: {
+                    id: 0,
+                    name: '',
+                    price: 0,
+                    currency: '',
+                    description: '',
+                    image: ''
+                },
+                successMessage: "Item added successfully!",
+                errorMessage: null
+            }));
+        } catch (error) {
+            console.error("Error adding item:", error);
+            this.setState({
+                successMessage: null,
+                errorMessage: "Error adding item. Please try again."
+            });
+        }
     };
 
-    handleAddItem = () => {
-        const { items, newItem } = this.state;
-        const updatedItems = [...items, { ...newItem, total: newItem.unitPrice * newItem.quantity }];
-        this.setState({
-            items: updatedItems,
-            showModal: false,
-            newItem: { id: '', name: '', unitPrice: 0, quantity: 0, total: 0, file: null }
-        });
+
+    handleDeleteItem = async (id: number) => {
+        try {
+            await axios.delete(`http://localhost:4000/products/${id}`);
+            this.setState(prevState => ({
+                items: prevState.items.filter(item => item.id !== id),
+                successMessage: "Item deleted successfully!",
+                errorMessage: null
+            }));
+        } catch (error) {
+            console.error("Error deleting item: ", error);
+            this.setState({
+                successMessage: null,
+                errorMessage: "Error deleting item. Please try again."
+            });
+        }
+    };
+
+    handleUpdateItem = async (id: number, updatedData: Item) => {
+        try {
+            // @ts-ignore
+            const formData = new FormData();
+            formData.append('id', updatedData.id.toString());
+            formData.append('name', updatedData.name);
+            formData.append('price', updatedData.price.toString());
+            formData.append('currency', updatedData.currency);
+            formData.append('description', updatedData.description);
+            // @ts-ignore
+            if (updatedData.image instanceof File) {
+                formData.append('image', updatedData.image);
+            } else {
+                formData.append('image', updatedData.image);
+            }
+
+            const res = await axios.put(`http://localhost:4000/products/${id}`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+
+            this.setState(prevState => ({
+                items: prevState.items.map(item => item.id === id ? res.data : item),
+                successMessage: "Item updated successfully!",
+                errorMessage: null
+            }));
+        } catch (error) {
+            console.error("Error updating item: ", error);
+            this.setState({
+                successMessage: null,
+                errorMessage: "Error updating item. Please try again."
+            });
+        }
     };
 
     toggleDropdown = () => {
         this.setState(prevState => ({ showDropdown: !prevState.showDropdown }));
     };
 
-
-
     render() {
-        const { showModal, showDropdown, items, newItem } = this.state;
-
-
-        function alert(arg0: string): void {
-            throw new Error("Function not implemented.");
-        }
+        const { showModal, showDropdown, items, newItem, successMessage, errorMessage } = this.state;
 
         return (
-
             <div className="container mx-auto mt-5">
                 <div className="border-b-4 flex justify-between items-center">
                     <div></div>
@@ -125,14 +190,13 @@ export class Admin extends Component<{}, State> {
                         </button>
                         {showDropdown && (
                             <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-300 rounded-lg shadow-lg">
-
                                 <button className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100">
                                     Profile
                                 </button>
-                                <button className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100" >
-                                   Settings
+                                <button className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100">
+                                    Settings
                                 </button>
-                                <button className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100" >
+                                <button className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100">
                                     <a href="/">Log Out</a>
                                 </button>
                             </div>
@@ -146,98 +210,85 @@ export class Admin extends Component<{}, State> {
                 {showModal && (
                     <div className="fixed inset-0 z-50 flex items-center justify-center">
                         <div className="bg-white rounded-lg shadow-lg max-w-md w-full mx-2">
-                            <div className="flex justify-between items-center p-5 border-b border-gray-200">
-                                <h3 className="text-lg font-medium">Add Item</h3>
-                                <button className="text-gray-500" onClick={this.handleClose}>&times;</button>
+                            <div className="flex justify-between items-center p-4 border-b">
+                                <h3 className="text-lg font-semibold">Add New Item</h3>
+                                <button onClick={this.handleClose}>×</button>
                             </div>
-                            <div className="p-5">
-                                <form>
-                                    <div className="mb-4">
-                                        <label className="block text-sm font-medium text-gray-700">ID</label>
-                                        <input className="mt-1 p-2 block w-full border border-gray-300 rounded-md"
-                                               type="text" name="id" value={newItem.id} onChange={this.handleChange} />
-                                    </div>
-                                    <div className="mb-4">
-                                        <label className="block text-sm font-medium text-gray-700">Name</label>
-                                        <input className="mt-1 p-2 block w-full border border-gray-300 rounded-md"
-                                               type="text" name="name" value={newItem.name} onChange={this.handleChange} />
-                                    </div>
-                                    <div className="mb-4">
-                                        <label className="block text-sm font-medium text-gray-700">Unit Price</label>
-                                        <input className="mt-1 p-2 block w-full border border-gray-300 rounded-md"
-                                               type="number" name="unitPrice" value={newItem.unitPrice} onChange={this.handleChange} />
-                                    </div>
-                                    <div className="mb-4">
-                                        <label className="block text-sm font-medium text-gray-700">Quantity</label>
-                                        <input className="mt-1 p-2 block w-full border border-gray-300 rounded-md"
-                                               type="number" name="quantity" value={newItem.quantity} onChange={this.handleChange} />
-                                    </div>
-                                    <div className="mb-4">
-                                        <label className="block text-sm font-medium text-gray-700">File Uploader</label>
-                                        <input className="mt-1 p-2 block w-full border border-gray-300 rounded-md"
-                                               type="file" name="file" onChange={this.handleFileChange} />
-                                    </div>
-                                </form>
+                            <div className="p-4">
+                                <div className="mb-4">
+                                    <label className="block mb-2 text-sm font-bold">ID:</label>
+                                    <input type="number" name="id" value={newItem.id} onChange={this.handleChange} className="border rounded py-2 px-3 w-full" />
+                                </div>
+                                <div className="mb-4">
+                                    <label className="block mb-2 text-sm font-bold">Name:</label>
+                                    <input type="text" name="name" value={newItem.name} onChange={this.handleChange} className="border rounded py-2 px-3 w-full" />
+                                </div>
+                                <div className="mb-4">
+                                    <label className="block mb-2 text-sm font-bold">Price:</label>
+                                    <input type="number" name="price" value={newItem.price} onChange={this.handleChange} className="border rounded py-2 px-3 w-full" />
+                                </div>
+                                <div className="mb-4">
+                                    <label className="block mb-2 text-sm font-bold">Currency:</label>
+                                    <input type="text" name="currency" value={newItem.currency} onChange={this.handleChange} className="border rounded py-2 px-3 w-full" />
+                                </div>
+                                <div className="mb-4">
+                                    <label className="block mb-2 text-sm font-bold">Description:</label>
+                                    <input type="text" name="description" value={newItem.description} onChange={this.handleChange} className="border rounded py-2 px-3 w-full" />
+                                </div>
+                                <div className="mb-4">
+                                    <label className="block mb-2 text-sm font-bold">Image:</label>
+                                    <input type="file" name="image" onChange={this.handleChange} className="border rounded py-2 px-3 w-full" />
+                                </div>
                             </div>
-                            <div className="flex justify-end p-5 border-t border-gray-200">
+                            <div className="flex justify-end p-4 border-t">
                                 <button className="bg-gray-500 text-white py-2 px-4 rounded mr-2" onClick={this.handleClose}>
-                                    Close
+                                    Cancel
                                 </button>
                                 <button className="bg-blue-500 text-white py-2 px-4 rounded" onClick={this.handleAddItem}>
-                                    Save
+                                    Add
                                 </button>
                             </div>
                         </div>
                     </div>
                 )}
 
-                <div className="mt-4 overflow-x-auto">
-                    <table className="min-w-full bg-white">
-                        <thead>
-                        <tr>
-                            <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-gray-800 tracking-wider">
-                                ID
-                            </th>
-                            <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-gray-800 tracking-wider">
-                                Name
-                            </th>
-                            <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-gray-800 tracking-wider">
-                                Unit Price
-                            </th>
-                            <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-gray-800 tracking-wider">
-                                Quantity
-                            </th>
-                            <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-gray-800 tracking-wider">
-                                Total
-                            </th>
-                            <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-gray-800 tracking-wider">
-                                Actions
-                            </th>
+                {successMessage && <p className="text-green-500">{successMessage}</p>}
+                {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+
+                <table className="min-w-full bg-white">
+                    <thead>
+                    <tr>
+                        <th className="py-2">ID</th>
+                        <th className="py-2">Name</th>
+                        <th className="py-2">Price</th>
+                        <th className="py-2">Currency</th>
+                        <th className="py-2">Description</th>
+                        <th className="py-2">Image</th>
+                        <th className="py-2">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {items.map((item) => (
+                        <tr key={item.id}>
+                            <td className="py-2">{item.id}</td>
+                            <td className="py-2">{item.name}</td>
+                            <td className="py-2">{item.price}</td>
+                            <td className="py-2">{item.currency}</td>
+                            <td className="py-2">{item.description}</td>
+                            <td className="py-2"><img src={item.image} alt={item.name} className="w-16 h-16 object-cover" /></td>
+                            <td className="py-2">
+                                <button className="text-blue-500 mr-2">
+                                    <FontAwesomeIcon icon={faEdit} />
+                                </button>
+                                <button className="text-red-500" onClick={() => this.handleDeleteItem(item.id)}>
+                                    <FontAwesomeIcon icon={faTrash} />
+                                </button>
+                            </td>
                         </tr>
-                        </thead>
-                        <tbody>
-                        {items.map(({ id, name, unitPrice, quantity, total }, index) => (
-                            <tr key={index}>
-                                <td className="px-6 py-4 border-b border-gray-200">{id}</td>
-                                <td className="px-6 py-4 border-b border-gray-200">{name}</td>
-                                <td className="px-6 py-4 border-b border-gray-200">{unitPrice}</td>
-                                <td className="px-6 py-4 border-b border-gray-200">{quantity}</td>
-                                <td className="px-6 py-4 border-b border-gray-200">{total}</td>
-                                <td className="px-6 py-4 border-b border-gray-200">
-                                    <button className="text-blue-700 mr-2">
-                                        <FontAwesomeIcon icon={faEdit} />
-                                    </button>
-                                    <button className="text-red-500">
-                                        <FontAwesomeIcon icon={faTrash} />
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
-                        </tbody>
-                    </table>
-                </div>
+                    ))}
+                    </tbody>
+                </table>
             </div>
         );
     }
 }
-

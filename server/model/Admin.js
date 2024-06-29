@@ -1,30 +1,32 @@
 const mongoose = require('mongoose');
 
-const AdminModel = mongoose.Schema(
+const {Schema} = mongoose;
+
+const AdminModel = new Schema(
     {
-        "id": {
+        id: {
             require: true,
             type: Number,
             unique: true,
             index: true
         },
-        "name": {
+        name: {
             require: true,
             type: String
         },
-        "price": {
+        price: {
             require: true,
             type: Number
         },
-        "currency":{
+        currency:{
             require:true,
             type:String
         },
-        "description":{
+        description:{
             require:true,
             type:String
         },
-        "image":{
+        image:{
             require:true,
             type: String
         }

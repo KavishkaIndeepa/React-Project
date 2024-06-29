@@ -24,7 +24,7 @@ export class Items extends Component {
     fetchData = async () =>{
         try {
 
-            this.api.get('products/all').then((res: {data: any}) => {
+            this.api.get('/signin').then((res: {data: any}) => {
                 const jsonData = res.data;
                 this.setState({data:jsonData});
             }).catch((error: any) => {

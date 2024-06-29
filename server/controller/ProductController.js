@@ -1,4 +1,4 @@
-const {productsList} = require("../constants/const");
+// const {productsList} = require("../constants/const");
 const Product = require('../model/Product');
 
 const ProductsController = {
